@@ -25,7 +25,7 @@ class AttachmentManager(models.Manager):
             object_type = ContentType.objects.get_for_model(obj)
             return self.filter(content_type__pk=object_type.id,
                                object_id=obj.pk)
-        except ContentType.DoesNotExist:
+        except AttributeError:
             object_type = None
             return self.none()
 
